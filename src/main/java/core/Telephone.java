@@ -97,31 +97,31 @@ public class Telephone {
         this.subscriberNumber = subscriberNumber;
     }
 
-    private String checkNumberAgainstCode(){
+    private String checkNumberAgainstCode() {
         String[] list = number.split("-");
-        if(list.length != 3){
+        if (list.length != 4) {
             return "invalid";
         }
-        areaCode = list[0];
-        exchangeCode = list[1];
-        subscriberNumber = list[2];
+        areaCode = list[1];
+        exchangeCode = list[2];
+        subscriberNumber = list[3];
 
         boolean pass = true;
-        if(areaCode.equals("NPA")){
-            System.out.println(1);
-            if(Pattern.matches("N\\w\\w", exchangeCode)){
-                if(Pattern.matches("\\d\\d\\d\\d", subscriberNumber)){
-                    return areaCode + " " + exchangeCode + " " + subscriberNumber;
-                }
-                else{
+        if (list[0].equals("+1")) {
+            if (areaCode.equals("NPA")) {
+                if (Pattern.matches("N\\w\\w", exchangeCode)) {
+                    if (Pattern.matches("\\d\\d\\d\\d", subscriberNumber)) {
+                        return "+1 " + areaCode + " " + exchangeCode + " " + subscriberNumber;
+                    } else {
+                        return "invalid";
+                    }
+                } else {
                     return "invalid";
                 }
-            }
-            else{
+            } else {
                 return "invalid";
             }
-        }
-        else{
+        } else {
             return "invalid";
         }
     }
