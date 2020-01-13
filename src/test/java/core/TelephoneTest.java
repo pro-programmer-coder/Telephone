@@ -19,7 +19,14 @@ class TelephoneTest {
 
     @Test
     public void correctNumberWithExtraSyntax(){
+        String testInput = "+1 (608) 555 - 1212";
+        String expected = "+16085551212";
+        String actual = "";
+        Telephone telephone = new Telephone(expected);
 
+        actual = telephone.getNumber();
+
+        assertEquals(expected, actual);
     }
 
     @Test
