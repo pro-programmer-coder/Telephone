@@ -43,7 +43,14 @@ class TelephoneTest {
 
     @Test
     public void numberTooShort(){
+        String testInput = "+1 (608) 555 - 121";
+        String expected = "invalid";
+        String actual = "";
+        Telephone telephone = new Telephone(testInput);
 
+        actual = telephone.getNumber();
+
+        assertEquals(expected, actual);
     }
 
     @Test

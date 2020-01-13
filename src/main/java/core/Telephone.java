@@ -27,11 +27,11 @@ public class Telephone {
                     i++;
                 }
             }
-            if(returnNumber.length() > 12){
-                return "invalid";
+            if(returnNumber.length() == 12){
+                return returnNumber;
             }
         }
-        return returnNumber;
+        return "invalid";
     }
 
     public void setNumber(String number) {
