@@ -54,8 +54,27 @@ class TelephoneTest {
     }
 
     @Test
-    public void incorrectPlusOneAtStart(){
+    public void incorrectPlusAtStart(){
+        String testInput = "-1 (608) 555 - 121";
+        String expected = "invalid";
+        String actual = "";
+        Telephone telephone = new Telephone(testInput);
 
+        actual = telephone.getNumber();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void incorrectOneAtStart(){
+        String testInput = "+3 (608) 555 - 121";
+        String expected = "invalid";
+        String actual = "";
+        Telephone telephone = new Telephone(testInput);
+
+        actual = telephone.getNumber();
+
+        assertEquals(expected, actual);
     }
 
 }
