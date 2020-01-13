@@ -22,7 +22,7 @@ class TelephoneTest {
         String testInput = "+1 (608) 555 - 1212";
         String expected = "+16085551212";
         String actual = "";
-        Telephone telephone = new Telephone(expected);
+        Telephone telephone = new Telephone(testInput);
 
         actual = telephone.getNumber();
 
@@ -31,7 +31,14 @@ class TelephoneTest {
 
     @Test
     public void numberTooLong(){
+        String testInput = "+1 (608) 555 - 12122";
+        String expected = "invalid";
+        String actual = "";
+        Telephone telephone = new Telephone(testInput);
 
+        actual = telephone.getNumber();
+
+        assertEquals(expected, actual);
     }
 
     @Test
