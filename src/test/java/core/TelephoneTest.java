@@ -78,12 +78,38 @@ class TelephoneTest {
     }
 
     @Test
-    public void testValidNumber(){
-        String testInput = "+3 (608) 555 - 121";
-        String expected = "NPA NAA 123";
+    public void testValidNumberNPA(){
+        String expected = "NPA NAA 1234";
         String actual = "";
-        Telephone telephone = new Telephone("NPA","NAA","1234");
+        Telephone telephone = new Telephone("NPA-NAA-1234");
+        actual = telephone.getNumber();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testInvalidNumberWrongAreaCode(){
+        String expected = "invalid";
+        String actual = "";
+        Telephone telephone = new Telephone("NPQ-NAA-1234");
         actual = telephone.getNumber();
     }
+
+    @Test
+    public void testInvalidNumberWrongExchangeCode(){
+        String expected = "invalid";
+        String actual = "";
+        Telephone telephone = new Telephone("NPA-NA2-1234");
+        actual = telephone.getNumber();
+    }
+
+    @Test
+    public void testInvalidNumberLettersInSubNo(){
+        String expected = "invalid";
+        String actual = "";
+        Telephone telephone = new Telephone("NPA-NA2-1as4");
+        actual = telephone.getNumber();
+    }
+    
 
 }

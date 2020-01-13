@@ -1,5 +1,6 @@
 package core;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Telephone {
@@ -12,17 +13,7 @@ public class Telephone {
         this.number = number;
     }
 
-    public Telephone(String areaCode, String exchangeCode, String subscriberNumber) {
-        number = null;
-        this.areaCode = areaCode;
-        this.exchangeCode = exchangeCode;
-        this.subscriberNumber = subscriberNumber;
-    }
-
     public String getNumber() {
-        if(number == null){
-            return checkNumberAgainstCode();
-        }
 
         String returnNumber = "";
         String start = "" + number.charAt(0) + number.charAt(1);
@@ -47,20 +38,20 @@ public class Telephone {
                 return returnNumber;
             }
         }
-        return "invalid";
+        return checkNumberAgainstCode();
     }
 
     public String getNumber1() {
-        String returnNumber = "";
+        StringBuilder returnNumber = new StringBuilder();
         String start = "" + number.charAt(0) + number.charAt(1);
         if(start.equals("+1")){
-            returnNumber += start;
+            returnNumber.append(start);
             int i = 2;
             boolean flag = true;
             while(flag){
                 int value = number.charAt(i);
                 if(value >= 48 && value <= 57 ){
-                    returnNumber += number.charAt(i);
+                    returnNumber.append(number.charAt(i));
                 }
                 if(number.length() -1 == i){
                     flag = false;
@@ -70,7 +61,7 @@ public class Telephone {
                 }
             }
             if(returnNumber.length() == 12){
-                return returnNumber;
+                return returnNumber.toString();
             }
         }
         return checkNumberAgainstCode();
@@ -105,8 +96,16 @@ public class Telephone {
     }
 
     private String checkNumberAgainstCode(){
+        String[] list = number.split("-");
+        if(list.length != 3){
+            return "invalid";
+        }
+        areaCode = list[0];
+        exchangeCode = list[1];
+        subscriberNumber = list[2];
+
         boolean pass = true;
-        if(!areaCode.equals("NPA")){
+        if(areaCode.equals("NPA")){
             System.out.println(1);
             if(Pattern.matches("N\\w\\w", exchangeCode)){
                 if(Pattern.matches("\\d\\d\\d\\d", subscriberNumber)){
