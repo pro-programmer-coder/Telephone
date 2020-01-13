@@ -14,7 +14,9 @@ public class Telephone {
     }
 
     public String getNumber() {
-
+        if(number.equals("") || number.equals(null)){
+            return("invalid");
+        }
         String returnNumber = "";
         String start = "" + number.charAt(0) + number.charAt(1);
 

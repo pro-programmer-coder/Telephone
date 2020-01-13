@@ -110,6 +110,37 @@ class TelephoneTest {
         Telephone telephone = new Telephone("NPA-NA2-1as4");
         actual = telephone.getNumber();
     }
-    
+
+    @Test
+    public void testMissingAreaCode(){
+        String expected = "invalid";
+        String actual = "";
+        Telephone telephone = new Telephone("NA2-1as4");
+        actual = telephone.getNumber();
+    }
+
+    @Test
+    public void testMissingExchangeCode(){
+        String expected = "invalid";
+        String actual = "";
+        Telephone telephone = new Telephone("NPA-1as4");
+        actual = telephone.getNumber();
+    }
+
+    @Test
+    public void testMissingSubscriberCode(){
+        String expected = "invalid";
+        String actual = "";
+        Telephone telephone = new Telephone("NPA-NA2");
+        actual = telephone.getNumber();
+    }
+
+    @Test
+    public void testEmptyString(){
+        String expected = "invalid";
+        String actual = "";
+        Telephone telephone = new Telephone("");
+        actual = telephone.getNumber();
+    }
 
 }
