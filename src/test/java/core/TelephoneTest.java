@@ -157,4 +157,14 @@ class TelephoneTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void secondAndThirdExchangeCodeTheSame(){
+        String expected = "invalid";
+        String actual;
+        Telephone telephone = new Telephone("+1-NPA-Q11-1234");
+        actual = telephone.getNumber();
+
+        assertEquals(expected, actual);
+    }
+
 }

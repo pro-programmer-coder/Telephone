@@ -109,7 +109,7 @@ public class Telephone {
         boolean pass = true;
         if (list[0].equals("+1")) {
             if (areaCode.equals("NPA")) {
-                if (Pattern.matches("N\\w\\w", exchangeCode)) {
+                if (Pattern.matches("N\\w\\w", exchangeCode) || exchangeCode.toCharArray()[1] != exchangeCode.toCharArray()[2]) {
                     if (Pattern.matches("\\d\\d\\d\\d", subscriberNumber)) {
                         return "+1 " + areaCode + " " + exchangeCode + " " + subscriberNumber;
                     } else {
