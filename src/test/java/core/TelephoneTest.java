@@ -77,4 +77,13 @@ class TelephoneTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testValidNumber(){
+        String testInput = "+3 (608) 555 - 121";
+        String expected = "NPA NAA 123";
+        String actual = "";
+        Telephone telephone = new Telephone("NPA","NAA","1234");
+        actual = telephone.getNumber();
+    }
+
 }
